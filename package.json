@@ -3,7 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "description": "Repositorio que consiste na administração de tarefas incluindo um arquivo csv, criado apartir das aulas da rocketseat da trilha de Node. Especificamente sobre o desafio do módulo 1.",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch src/server.js"
