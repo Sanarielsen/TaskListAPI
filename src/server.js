@@ -1,19 +1,21 @@
+import { json } from './middlewares/json.js';
 import { routes } from './routes.js';
 import http from 'node:http'
 
-const server = http.createServer( (req, res) => {
+const server = http.createServer( async (req, res) => {
   const { method, url } = req;
 
-  const route = routes.find( (route) => {
-    return route.method === method && route.path === url
-  } )
+  await json(req, res);
+
+  const route = routes.find( route => {
+    return route.method === method && route.path.test(url)
+  })
 
   if (route) {
-
-    const routeParams = request.url.match(route.path);
-
+    const routeParams = req.url.match(route.path);
+  
     const { ...params } = routeParams.groups;
-    request.params = params
+    req.params = params ?? {};
 
     return route.handler(req, res);
   }
